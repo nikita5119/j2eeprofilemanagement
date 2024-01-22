@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="test.css"> 
+     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+     <script src="test.js"></script>
+    <title>Registration</title>
+</head>
+<body>
+
+    <h2>User Registration</h2>
+
+    <form action="register" method="post">
+        <label for="first_name">First Name:</label>
+        <input type="text" id="first_name" name="first_name" required><br>
+
+        <label for="last_name">Last Name:</label>
+        <input type="text" id="last_name" name="last_name" required><br>
+
+        <label for="phone_number">Phone Number:</label>
+        <input type="text" id="phone_number" name="phone_number" required><br>
+
+        <label for="email_address">Email Address:</label>
+        <input type="email" id="email_address" name="email_address" required><br>
+
+    	<label for="date_of_birth">Date of Birth:</label>
+		<input type="date" id="date_of_birth" name="date_of_birth" pattern="\d{4}-\d{2}-\d{2}" required><br> 
+
+        <label for="userid">User ID:</label>
+        <input type="text" id="userid" name="userid" required><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br>
+
+        <input type="submit" value="Register" onclick="validateForm()">
+    </form>
+
+</body>
+</html>
