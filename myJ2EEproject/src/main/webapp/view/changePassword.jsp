@@ -14,8 +14,7 @@
 
     <form action="changePassword" method="post">
     	
-    	<label for="userid">User ID:</label>
-    	<input type="text" id="userid" name="userid" required><br>
+    	
     
         <label for="current_password">Current Password:</label>
         <input type="password" id="current_password" name="password" required><br>

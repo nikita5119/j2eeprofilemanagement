@@ -2,6 +2,8 @@ package mvc.controller.ui;
 
 import java.util.Date;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -75,23 +77,23 @@ public class UIcontroller {
 	
 	
 	@RequestMapping("/changePassword")
-	public String changePassword(@RequestParam String userid,  //make sure the parameter match the name in changepassword form and query
-            @RequestParam String password,
-            @RequestParam String newPassword,
-            @RequestParam String confirmPassword,
-            RedirectAttributes redirectAttributes) {
-			System.out.println("in controller in change password");
-			boolean passwordChanged = lb.changePassword(userid, password, newPassword, confirmPassword);
-//			if (passwordChanged) {
-//		        // Retrieve the username from the session and add it to the model
-//		        String username = (String) session.getAttribute("username");
-//		        redirectAttributes.addFlashAttribute("username", username);
-//		        redirectAttributes.addFlashAttribute("successMessage", "Password changed successfully.");
-//		        redirectAttributes.addFlashAttribute("errorMessage", ""); // Clear error message
-//		    } else {
-//		        redirectAttributes.addFlashAttribute("errorMessage", "Failed to change password. Please check your current password or ensure the new passwords match.");
-//		        redirectAttributes.addFlashAttribute("successMessage", ""); // Clear success message
-//		    }
+    public String changePassword(@RequestParam String password,
+                                 @RequestParam String newPassword,
+                                 @RequestParam String confirmPassword,
+                                 RedirectAttributes redirectAttributes,
+                                 HttpSession session) {
+        System.out.println("in controller in change password");
+        String username = (String) session.getAttribute("username");
+        boolean passwordChanged = lb.changePassword(username, password, newPassword, confirmPassword);
+
+//        if (passwordChanged) {
+//            redirectAttributes.addFlashAttribute("username", username);
+//            redirectAttributes.addFlashAttribute("successMessage", "Password changed successfully.");
+//            redirectAttributes.addFlashAttribute("errorMessage", ""); // Clear error message
+//        } else {
+//            redirectAttributes.addFlashAttribute("errorMessage", "Failed to change password. Please check your current password or ensure the new passwords match.");
+//            redirectAttributes.addFlashAttribute("successMessage", ""); // Clear success message
+//        }
 
 		    return "welcome";
 		}
