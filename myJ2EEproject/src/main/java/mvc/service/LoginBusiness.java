@@ -2,6 +2,8 @@ package mvc.service;
 
 import java.util.Date;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +20,7 @@ public class LoginBusiness {
 	UserRepository ur;
 	
 	public boolean userLogin(String userid, String pwd) {
-		System.out.println("IN SERVICE");
+		System.out.println("IN SERVICE for login");
 		int result= ur.checkUidPwdInDB(userid, pwd);
 		if(result==0) {
 			return false;
@@ -56,14 +58,21 @@ public class LoginBusiness {
 	    ur.save(ue);
 	    return true;
 	}
+	@Transactional
+	public boolean changePassword(String userId, String password, String newPassword, String confirmPassword) {
+        // Perform validation and logic for changing password
+		System.out.println("in service of passwordchange");
+        int userExists = ur.checkUidPwdInDB(userId, password);
+
+        if (userExists > 0 && newPassword.equals(confirmPassword)) {
+            // Password change logic
+            ur.updatePassword(newPassword, userId);
+            return true;
+        } else {
+            return false;
+        }
+    }
 	}
 
 
-//	
-//	
-//	
-//	     <label for="date_of_birth">Date of Birth:</label>
-//<input type="date" id="date_of_birth" name="date_of_birth" required><br> 
-//	
-//
-//}
+
